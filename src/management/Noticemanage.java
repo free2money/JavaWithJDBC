@@ -18,7 +18,7 @@ public class Noticemanage {
 		Statement st = con.createStatement();
 
 		System.out.println("<게시글 목록>");
-		String sql = "select id, title, hit, writer_id, regdate from notice order by regdate desc";
+		String sql = "select id, title, hit, writer_id, regdate from notice101 order by regdate desc";
 		ResultSet rs = st.executeQuery(sql);
 
 		while (rs.next()) {

@@ -74,13 +74,12 @@ public class Notice {
 	}
 
 	public void printList() {
-		String url = "jdbc:oracle:thin:@112.223.37.243:1521/xepdb1";
 		try {
+			String url = "jdbc:oracle:thin:@112.223.37.243:1521/xepdb1";
+			String sql = "select id, title, hit, writer_id, regdate, trunc(SYSDATE - cast(regdate as date)) time from notice order by regdate desc";
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-
 			Connection con = DriverManager.getConnection(url, "ACORN", "newlec");
 			Statement st = con.createStatement();
-			String sql = "select id, title, hit, writer_id, regdate, trunc(SYSDATE - cast(regdate as date)) time from notice101 order by regdate desc";
 			ResultSet rs = st.executeQuery(sql);
 
 			System.out.println("<게시글 목록>");
@@ -92,7 +91,7 @@ public class Notice {
 				writer_id = rs.getString(4);
 				regdate = rs.getString(5);
 				int time = rs.getInt(6);
-				if (time < 2)
+				if (time < 12)
 					title = "*" + rs.getString(2);
 				else
 					title = rs.getString(2);
